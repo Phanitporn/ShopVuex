@@ -1,114 +1,48 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
-          rel="noopener"
-          >babel</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router"
-          target="_blank"
-          rel="noopener"
-          >router</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex"
-          target="_blank"
-          rel="noopener"
-          >vuex</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
-          >Forum</a
-        >
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
-          >Community Chat</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-          >Twitter</a
-        >
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
-          >vue-router</a
-        >
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          rel="noopener"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
-          >vue-loader</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-          rel="noopener"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
+   <div>
+    <br /><br />
+    <div class="container">
+      <b-card class="mb-2 my-3 text-center" >
+        <b-img :src="img" style="width: 200px; height: 15rem"></b-img>
+        <h6 class="text-left" style="color:navy">{{ name }}</h6>
+        <b-card-text class="text-left" style="color:orangered "> ราคา {{ price }} THB. </b-card-text>
+
+        <div>
+          <b-form-spinbutton
+            id="sb-inline"
+            v-model="value"
+            inline
+          ></b-form-spinbutton>
+          <br /><br/>
+        </div>
+        <button type="button" class="btn btn-outline-dark" @click="Order(value,index)">
+          <b-icon icon="minecart-loaded"></b-icon> เพิ่มไปยังตะกร้า
+        </button>
+      </b-card>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  name: "HelloWorld",
+  name: 'HelloWorld',
   props: {
-    msg: String
-  }
-};
+    img:String,
+    name:String,
+    price:Number,
+    index:Number
+  },
+  data() {
+    return {
+      value: 1,
+    };
+  },
+  computed: {
+    ...mapGetters(["Order"]),
+  },
+
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -125,6 +59,6 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color:  brown;
 }
 </style>
